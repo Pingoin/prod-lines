@@ -1,0 +1,64 @@
+{
+    "resources": [
+      {
+        "id": 0,
+        "name": "Getreide",
+        "value": 55.0
+      },
+      {
+        "id": 1,
+        "name": "Mehl",
+        "value": 88.0
+      },
+      {
+        "id": 2,
+        "name": "Brot",
+        "value": 8.0
+      }
+    ],
+    "recepies": [
+      {
+        "id": 0,
+        "name": "Mehl Mahlen",
+        "inputs": [
+          {
+            "ressource": 0,
+            "amount": 150.0
+          }
+        ],
+        "outputs": [
+          {
+            "ressource": 0,
+            "amount": 120.0
+          }
+        ],
+        "duration": 3.0,
+        "modifier": 0.5
+      },
+      {
+        "id": 0,
+        "name": "Brot Backen",
+        "inputs": [
+          {
+            "ressource": 0,
+            "amount": 90.0
+          }
+        ],
+        "outputs": [
+          {
+            "ressource": 0,
+            "amount": 45.0
+          }
+        ],
+        "duration": 3.0,
+        "modifier": 0.0
+      }
+    ],
+    "targets": [
+      {
+        "ressource": 0,
+        "input": true,
+        "amount": 200.0
+      }
+    ]
+  }
