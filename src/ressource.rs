@@ -1,14 +1,17 @@
 use serde_derive::{Deserialize, Serialize};
-use super::ressource::RessourceUsed;
 
 #[derive(Deserialize, Serialize, Debug,Clone)]
-pub struct Recipie {
+pub struct Ressource {
     #[serde(default)]
     pub name: String,
     #[serde(default)]
-    pub inputs: Vec<RessourceUsed>,
+    pub value: f32,
+}
+
+#[derive(Deserialize, Serialize, Debug,Clone)]
+pub struct RessourceUsed {
     #[serde(default)]
-    pub outputs: Vec<RessourceUsed>,
+    pub ressource: String,
     #[serde(default)]
-    pub duration: f32,
+    pub amount: f32,
 }

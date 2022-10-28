@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use prod_lines::recipie::{read_from_file, Recipie};
+use prod_lines::{recipie::Recipie,read_from_file};
 
 fn main() -> std::io::Result<()> {
     let path = String::from("production.json");
