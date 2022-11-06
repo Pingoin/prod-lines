@@ -1,12 +1,12 @@
 {
   "resources": {
-    "wheat": {
-      "name": "Getreide",
-      "value": 55.0
-    },
     "flour": {
       "name": "Mehl",
       "value": 88.0
+    },
+    "wheat": {
+      "name": "Getreide",
+      "value": 55.0
     },
     "bread": {
       "name": "Brot",
@@ -48,10 +48,23 @@
     }
   },
   "targets": {
-    "firs": {
-      "ressource": "wheat",
-      "input": true,
-      "amount": 200.0
+    "first": {
+      "inputs": [
+        {
+          "ressource": "wheat",
+          "amount": 150000.0
+        },
+        {
+          "ressource": "flour",
+          "amount": 150000.0
+        }
+      ],
+      "outputs": [],
+      "result": {
+        "flour": 0.0,
+        "bread": 195000.0,
+        "wheat": 0.0
+      }
     }
   },
   "productions": {

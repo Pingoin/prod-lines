@@ -1,11 +1,15 @@
+use std::collections::HashMap;
+
 use serde_derive::{Deserialize, Serialize};
+
+use crate::ressource::RessourceUsed;
 
 #[derive(Deserialize, Serialize, Debug,Clone)]
 pub struct Target {
     #[serde(default)]
-    pub ressource: String,
+    pub inputs: Vec<RessourceUsed>,
     #[serde(default)]
-    pub input: bool,
+    pub outputs:Vec<RessourceUsed>,
     #[serde(default)]
-    pub amount: f32,
+    pub result:HashMap<String,f32>,
 }

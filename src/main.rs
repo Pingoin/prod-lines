@@ -7,7 +7,7 @@ use prod_lines::{
 
 fn main() -> std::io::Result<()> {
     let path = String::from("production.json");
-    let data = read_from_file(&path);
+    let mut data = read_from_file(&path);
 
     let mut wighted_recipies: HashMap<String, ProductionStep> = HashMap::new();
     for (key, val) in data.recepies.iter() {
@@ -45,6 +45,37 @@ fn main() -> std::io::Result<()> {
         }
     }
     
-    
+    //let mut result:HashMap<String,f32>=HashMap::new();
+
+    for target in data.targets.values_mut(){
+        for input in target.inputs.clone(){
+            target.result.entry(input.ressource.clone())
+            .and_modify(|res|{
+                *res+=input.amount;
+            }).or_insert(input.amount);
+
+            for step in & mut production_line{
+                let mut factor=f32::INFINITY;
+
+                for input_res in &step.inputs{
+                    let usable=target.result.entry(input_res.ressource.clone()).or_default();
+                    if factor>(*usable/input_res.amount){
+                        factor=*usable/input_res.amount;
+                    }
+                }
+                for input_res in &step.inputs{
+                    target.result.entry(input_res.ressource.clone()).and_modify(|res|{
+                        *res-= input_res.amount * factor;
+                    });
+                }
+                for output_res in &step.outputs {
+                    target.result.entry(output_res.ressource.clone()).and_modify(|res|{
+                        *res+= output_res.amount * factor;
+                    }).or_insert(output_res.amount * factor);
+                }
+            }
+        }
+    }
+    dbg!(&data.targets);
     data.write_to_file(&path)
 }
