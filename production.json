@@ -1,35 +1,19 @@
 {
   "resources": {
-    "flour": {
-      "name": "Mehl",
-      "value": 88.0
+    "bread": {
+      "name": "Brot",
+      "value": 8.0
     },
     "wheat": {
       "name": "Getreide",
       "value": 55.0
     },
-    "bread": {
-      "name": "Brot",
-      "value": 8.0
+    "flour": {
+      "name": "Mehl",
+      "value": 88.0
     }
   },
   "recepies": {
-    "bread": {
-      "name": "Brot Backen",
-      "inputs": [
-        {
-          "ressource": "flour",
-          "amount": 90.0
-        }
-      ],
-      "outputs": [
-        {
-          "ressource": "bread",
-          "amount": 45.0
-        }
-      ],
-      "duration": 3.0
-    },
     "flour": {
       "name": "Mehl Mahlen",
       "inputs": [
@@ -42,6 +26,22 @@
         {
           "ressource": "flour",
           "amount": 120.0
+        }
+      ],
+      "duration": 3.0
+    },
+    "bread": {
+      "name": "Brot Backen",
+      "inputs": [
+        {
+          "ressource": "flour",
+          "amount": 90.0
+        }
+      ],
+      "outputs": [
+        {
+          "ressource": "bread",
+          "amount": 45.0
         }
       ],
       "duration": 3.0
@@ -61,8 +61,7 @@
       ],
       "outputs": [],
       "result": {
-        "flour": 0.0,
-        "bread": 195000.0,
+        "flour": 270000.0,
         "wheat": 0.0
       }
     }

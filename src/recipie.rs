@@ -49,6 +49,15 @@ impl ProductionStep {
         });
     }
 
+    pub const fn new()->ProductionStep{
+        ProductionStep {
+            inputs: Vec::new(),
+            outputs: Vec::new(),
+            duration: 0.0,
+            production_capacity: 0.0,
+        }
+    }
+
     pub fn list_contains(&self, input_output: IOtype, list: &Vec<String>) -> bool {
         let mut result = false;
         let put_list;
