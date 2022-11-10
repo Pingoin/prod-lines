@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use serde_derive::{Deserialize, Serialize};
 
-use super::{recipie::ProductionStep, ressource::RessourceUsed};
+use super::{recipe::ProductionStep, ressource::RessourceUsed};
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Target {
@@ -40,7 +40,7 @@ impl Target {
             }
 
             self.recipie_load
-                .entry(step.recipie.clone())
+                .entry(step.recipe.clone())
                 .and_modify(|res| {
                     *res += factor*step.production_capacity;
                 })

@@ -1,5 +1,5 @@
 {
-  "resources": {
+  "ressources": {
     "bread": {
       "name": "Brot",
       "value": 8.0
@@ -13,7 +13,7 @@
       "value": 55.0
     }
   },
-  "recepies": {
+  "recipes": {
     "flour": {
       "name": "Mehl Mahlen",
       "inputs": [
@@ -73,7 +73,7 @@
     "mill": {
       "name": "Mühle",
       "factor": 1.0,
-      "recipies": [
+      "recipes": [
         "flour"
       ],
       "devideRecipies": true

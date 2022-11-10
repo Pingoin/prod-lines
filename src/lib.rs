@@ -1,4 +1,4 @@
-pub mod recipie;
+pub mod recipe;
 pub mod production;
 pub mod input_file;
 pub mod ressource;
@@ -10,9 +10,16 @@ use std::io::{prelude::*};
 
 use input_file::InputFile;
 use production::Production;
-use recipie::{ProductionStep, Recipie, IOtype};
+use recipe::{ProductionStep, Recipe, IOtype};
+use ressource::Ressource;
+use target::Target;
 
-pub fn read_from_file(path: &String) -> InputFile {
+pub fn read_from_file(path: &String) -> ( 
+HashMap<String,Ressource>,
+HashMap<String,Recipe>, 
+HashMap<String,Target>, 
+HashMap<String,Production>
+) {
     let mut input_file = match File::open(path) {
         Ok(file) => file,
         Err(error) => panic!("Problem opening the file: {:?}", error),
@@ -31,14 +38,14 @@ pub fn read_from_file(path: &String) -> InputFile {
             Err(error) => panic!("Problem : {:?}", error),
         }
     };
-    data
+    (data.ressources,data.recipes,data.targets,data.productions)
 }
 
-pub fn get_wighted_recipies(productions: &HashMap<String, Production>,recepies: &HashMap<String, Recipie>)->HashMap<String, ProductionStep>{
-    let mut wighted_recipies: HashMap<String, ProductionStep> = HashMap::new();
+pub fn get_wighted_recipes(productions: &HashMap<String, Production>,recepies: &HashMap<String, Recipe>)->HashMap<String, ProductionStep>{
+    let mut wighted_recipes: HashMap<String, ProductionStep> = HashMap::new();
     for (_, production) in productions.iter() {
-        for recipie_id in production.recipies.iter() {
-            let mut recipie = match wighted_recipies.get_mut(recipie_id) {
+        for recipie_id in production.recipes.iter() {
+            let mut recipie = match wighted_recipes.get_mut(recipie_id) {
                 Some(recipie) => recipie.clone(),
                 None => match recepies.get(recipie_id) {
                     Some(rec) => rec.to_production_step(recipie_id),
@@ -46,26 +53,26 @@ pub fn get_wighted_recipies(productions: &HashMap<String, Production>,recepies: 
                 },
             };
             recipie.production_capacity += production.factor / recipie.duration;
-            wighted_recipies.insert(recipie_id.clone(), recipie);
+            wighted_recipes.insert(recipie_id.clone(), recipie);
             
         }
     }
-    wighted_recipies
+    wighted_recipes
 }
 
-pub fn create_production_line(wighted_recipies:&HashMap<String, ProductionStep>)->Vec<ProductionStep>{
+pub fn create_production_line(wighted_recipes:&HashMap<String, ProductionStep>)->Vec<ProductionStep>{
     let mut production_line: Vec<ProductionStep> = Vec::new();
     {
         let mut produced_ressources: Vec<String> = Vec::new();
         let mut already_produced_ressources: Vec<String> = Vec::new();
         let mut inserted_keys: Vec<String> = Vec::new();
 
-        for (_, recipie) in wighted_recipies.iter() {
+        for (_, recipie) in wighted_recipes.iter() {
             recipie.add_output_to_list(&mut produced_ressources);
         }
 
-        while production_line.len() < wighted_recipies.len() {
-            for (key, recipie) in wighted_recipies.iter() {
+        while production_line.len() < wighted_recipes.len() {
+            for (key, recipie) in wighted_recipes.iter() {
                 if (!recipie.list_contains(IOtype::Input, &produced_ressources)
                     || recipie.list_contains(IOtype::Input, &already_produced_ressources))
                     && !inserted_keys.contains(key)

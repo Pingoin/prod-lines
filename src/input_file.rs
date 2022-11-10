@@ -3,15 +3,15 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::{prelude::*, Error};
 
-use super::{recipie::Recipie,production::Production,ressource::Ressource,target::Target};
+use super::{recipe::Recipe,production::Production,ressource::Ressource,target::Target};
 
 
 #[derive(Deserialize, Serialize, Debug,Clone)]
 pub struct InputFile {
     #[serde(default)]
-    pub resources: HashMap<String,Ressource>,
+    pub ressources: HashMap<String,Ressource>,
     #[serde(default)]
-    pub recepies: HashMap<String,Recipie>,
+    pub recipes: HashMap<String,Recipe>,
     #[serde(default)]
     pub targets: HashMap<String,Target>,
     #[serde(default)]

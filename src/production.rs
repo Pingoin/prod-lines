@@ -7,10 +7,10 @@ pub struct Production {
     #[serde(default = "float1")]
     pub factor: f32,
     #[serde(default)]
-    pub recipies: Vec<String>,
+    pub recipes: Vec<String>,
     #[serde(default = "default_true")]
     #[serde(rename = "devideRecipies")]
-    pub devide_recipies: bool,
+    pub devide_recipes: bool,
 }
 
 fn float1() -> f32 {

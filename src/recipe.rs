@@ -2,7 +2,7 @@ use super::ressource::RessourceUsed;
 use serde_derive::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
-pub struct Recipie {
+pub struct Recipe {
     #[serde(default)]
     pub name: String,
     #[serde(default)]
@@ -13,7 +13,7 @@ pub struct Recipie {
     pub duration: f32,
 }
 
-impl Recipie {
+impl Recipe {
 
     pub fn to_production_step(&self,id: &String) -> ProductionStep {
         ProductionStep {
@@ -21,7 +21,7 @@ impl Recipie {
             outputs: self.outputs.clone(),
             production_capacity: 0.0,
             duration:self.duration,
-            recipie: id.clone(),
+            recipe: id.clone(),
         }
     }
 
@@ -43,7 +43,7 @@ pub struct ProductionStep {
     #[serde(default)]
     pub production_capacity: f32,
     #[serde(default)]
-    pub recipie:String,
+    pub recipe:String,
 }
 
 impl ProductionStep {
@@ -62,7 +62,7 @@ impl ProductionStep {
             outputs: Vec::new(),
             duration: 0.0,
             production_capacity: 0.0,
-            recipie:String::new(),
+            recipe:String::new(),
         }
     }
 
