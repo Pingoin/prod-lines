@@ -6,10 +6,10 @@ fn main() -> std::io::Result<()> {
 
     let wighted_recipies = get_wighted_recipies(&data.productions, &data.recepies);
 
-    let mut production_line = create_production_line(&wighted_recipies);
-
+    let production_line = create_production_line(&wighted_recipies);
+dbg!(&production_line);
     for target in data.targets.values_mut() {
-        target.process(&mut production_line)
+        target.process(& production_line)
     }
     dbg!(&data.targets);
     data.write_to_file(&path)

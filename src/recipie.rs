@@ -15,12 +15,13 @@ pub struct Recipie {
 
 impl Recipie {
 
-    pub fn to_production_step(&self) -> ProductionStep {
+    pub fn to_production_step(&self,id: &String) -> ProductionStep {
         ProductionStep {
             inputs: self.inputs.clone(),
             outputs: self.outputs.clone(),
             production_capacity: 0.0,
             duration:self.duration,
+            recipie: id.clone(),
         }
     }
 
@@ -33,10 +34,16 @@ pub enum IOtype {
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct ProductionStep {
+    #[serde(default)]
     pub inputs: Vec<RessourceUsed>,
+    #[serde(default)]
     pub outputs: Vec<RessourceUsed>,
+    #[serde(default)]
     pub duration:f32,
+    #[serde(default)]
     pub production_capacity: f32,
+    #[serde(default)]
+    pub recipie:String,
 }
 
 impl ProductionStep {
@@ -55,6 +62,7 @@ impl ProductionStep {
             outputs: Vec::new(),
             duration: 0.0,
             production_capacity: 0.0,
+            recipie:String::new(),
         }
     }
 

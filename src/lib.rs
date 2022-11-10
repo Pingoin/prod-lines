@@ -41,7 +41,7 @@ pub fn get_wighted_recipies(productions: &HashMap<String, Production>,recepies: 
             let mut recipie = match wighted_recipies.get_mut(recipie_id) {
                 Some(recipie) => recipie.clone(),
                 None => match recepies.get(recipie_id) {
-                    Some(rec) => rec.to_production_step(),
+                    Some(rec) => rec.to_production_step(recipie_id),
                     None => ProductionStep::new(),
                 },
             };

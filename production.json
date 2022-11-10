@@ -4,13 +4,13 @@
       "name": "Brot",
       "value": 8.0
     },
-    "wheat": {
-      "name": "Getreide",
-      "value": 55.0
-    },
     "flour": {
       "name": "Mehl",
       "value": 88.0
+    },
+    "wheat": {
+      "name": "Getreide",
+      "value": 55.0
     }
   },
   "recepies": {
@@ -61,8 +61,11 @@
       ],
       "outputs": [],
       "result": {
-        "flour": 270000.0,
-        "wheat": 0.0
+        "wheat": 0.0,
+        "flour": 270000.0
+      },
+      "recipie_load": {
+        "flour": 333.33334
       }
     }
   },

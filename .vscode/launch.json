@@ -1,0 +1,64 @@
+{
+    // Verwendet IntelliSense zum Ermitteln möglicher Attribute.
+    // Zeigen Sie auf vorhandene Attribute, um die zugehörigen Beschreibungen anzuzeigen.
+    // Weitere Informationen finden Sie unter https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'prod_lines'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=prod_lines"
+                ],
+                "filter": {
+                    "name": "prod_lines",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'prod_lines'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=prod_lines",
+                    "--package=prod_lines"
+                ],
+                "filter": {
+                    "name": "prod_lines",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'prod_lines'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=prod_lines",
+                    "--package=prod_lines"
+                ],
+                "filter": {
+                    "name": "prod_lines",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
