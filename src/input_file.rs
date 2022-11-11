@@ -13,7 +13,7 @@ pub struct InputFile {
     #[serde(default)]
     pub recipes: HashMap<String,Recipe>,
     #[serde(default)]
-    pub targets: HashMap<String,Target>,
+    pub target: Target,
     #[serde(default)]
     pub productions: HashMap<String,Production>,
 }

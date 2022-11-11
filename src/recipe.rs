@@ -11,6 +11,10 @@ pub struct Recipe {
     pub outputs: Vec<RessourceUsed>,
     #[serde(default)]
     pub duration: f32,
+    #[serde(default)]
+    pub cycles: f32,
+    #[serde(default)]
+    pub cost: f32,
 }
 
 impl Recipe {

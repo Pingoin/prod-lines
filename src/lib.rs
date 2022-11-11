@@ -17,7 +17,7 @@ use target::Target;
 pub fn read_from_file(path: &String) -> ( 
 HashMap<String,Ressource>,
 HashMap<String,Recipe>, 
-HashMap<String,Target>, 
+Target, 
 HashMap<String,Production>
 ) {
     let mut input_file = match File::open(path) {
@@ -38,7 +38,7 @@ HashMap<String,Production>
             Err(error) => panic!("Problem : {:?}", error),
         }
     };
-    (data.ressources,data.recipes,data.targets,data.productions)
+    (data.ressources,data.recipes,data.target,data.productions)
 }
 
 pub fn get_wighted_recipes(productions: &HashMap<String, Production>,recepies: &HashMap<String, Recipe>)->HashMap<String, ProductionStep>{

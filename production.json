@@ -1,72 +1,191 @@
 {
   "ressources": {
-    "bread": {
-      "name": "Brot",
-      "value": 8.0
-    },
     "flour": {
       "name": "Mehl",
-      "value": 88.0
+      "value": 1200.0
     },
-    "wheat": {
-      "name": "Getreide",
-      "value": 55.0
+    "bread": {
+      "name": "Brot",
+      "value": 3180.0
+    },
+    "barley": {
+      "name": "Gerste",
+      "value": 662.0
+    },
+    "chaff": {
+      "name": "Häckselgut",
+      "value": 100.0
+    },
+    "silage": {
+      "name": "Silage",
+      "value": 342.0
+    },
+    "straw": {
+      "name": "Stroh",
+      "value": 84.0
+    },
+    "electricity": {
+      "name": "Strom",
+      "value": 1000.0
+    },
+    "methane":{
+      "name":"Methan",
+      "value":1000.0
+    },    
+    "digestate": {
+      "name": "Gährreste",
+      "value": 64.0
+    },
+    "fertilizer": {
+      "name": "Dünger",
+      "value": 2966.0
     }
+
   },
   "recipes": {
-    "flour": {
-      "name": "Mehl Mahlen",
-      "inputs": [
-        {
-          "ressource": "wheat",
-          "amount": 150.0
-        }
-      ],
-      "outputs": [
-        {
-          "ressource": "flour",
-          "amount": 120.0
-        }
-      ],
-      "duration": 3.0
-    },
     "bread": {
       "name": "Brot Backen",
       "inputs": [
         {
           "ressource": "flour",
-          "amount": 90.0
+          "amount": 2.0
         }
       ],
       "outputs": [
         {
           "ressource": "bread",
-          "amount": 45.0
+          "amount": 1.0
         }
       ],
-      "duration": 3.0
-    }
-  },
-  "targets": {
-    "first": {
+      "duration": 1.0,
+      "cycles":10800,
+      "costs":60
+    },
+    "flour": {
+      "name": "Mehl Mahlen",
       "inputs": [
         {
           "ressource": "wheat",
-          "amount": 150000.0
-        },
-        {
-          "ressource": "flour",
-          "amount": 150000.0
+          "amount": 1000.0
         }
       ],
-      "outputs": [],
-      "result": {
-        "wheat": 0.0,
-        "flour": 270000.0
-      },
-      "recipie_load": {
-        "flour": 333.33334
+      "outputs": [
+        {
+          "ressource": "flour",
+          "amount": 800.0
+        },
+        {
+          "ressource": "chaff",
+          "amount": 200.0
+        }
+      ],
+      "duration": 1.0,
+      "cycles":672,
+      "cost":24
+    },
+    "silage": {
+      "name": "Silage aus Häckselgut",
+      "inputs": [
+        {
+          "ressource": "chaff",
+          "amount": 1.0
+        }
+      ],
+      "outputs": [
+        {
+          "ressource": "silage",
+          "amount": 1.0
+        }
+      ],
+      "duration": 1.0,
+      "cycles":180000,
+      "cost":72
+    },
+    "bga-silage": {
+      "name": "Silage gähren",
+      "inputs": [
+        {
+          "ressource": "silage",
+          "amount": 840.0
+        }
+      ],
+      "outputs": [
+        {
+          "ressource": "electricity",
+          "amount": 756.0
+        },
+        {
+          "ressource": "methane",
+          "amount": 10.0
+        },
+        {
+          "ressource": "digestate",
+          "amount": 252.0
+        }
+      ],
+      "duration": 1.0,
+      "cycles":240,
+      "cost":60
+    },
+    "bga-straw": {
+      "name": "Stroh gähren",
+      "inputs": [
+        {
+          "ressource": "straw",
+          "amount": 840.0
+        }
+      ],
+      "outputs": [
+        {
+          "ressource": "electricity",
+          "amount": 80.0
+        },
+        {
+          "ressource": "methane",
+          "amount": 50.0
+        },
+        {
+          "ressource": "digestate",
+          "amount": 120.0
+        }
+      ],
+      "duration": 1.0,
+      "cycles":240,
+      "cost":60
+    },
+    "fertilizer": {
+      "name": "Silage gähren",
+      "inputs": [
+        {
+          "ressource": "fertilizer",
+          "amount": 1000.0
+        }
+      ],
+      "outputs": [
+        {
+          "ressource": "electricity",
+          "amount": 250.0
+        }
+      ],
+      "duration": 1.0,
+      "cycles":1200,
+      "cost":240
+    }
+  },
+  "target": {
+    "inputs": [
+      {
+        "ressource": "wheat",
+        "amount": 150000.0
       }
+    ],
+    "outputs": [],
+    "result": {
+      "wheat": 0.0,
+      "flour": 270000.0
+    },
+    "recipie_load": {
+      "flour": 333.33334
     }
   },
   "productions": {
@@ -75,6 +194,39 @@
       "factor": 1.0,
       "recipes": [
         "flour"
+      ],
+      "devideRecipies": true
+    },
+    "bakery":{
+      "name": "Bäckerei",
+      "factor": 1.0,
+      "recipes": [
+        "bread"
+      ],
+      "devideRecipies": true
+    },
+    "Silage":{
+      "name": "Hochsilo",
+      "factor": 1.0,
+      "recipes": [
+        "silage"
+      ],
+      "devideRecipies": true
+    },
+    "bga":{
+      "name": "Biogasanlage",
+      "factor": 1.0,
+      "recipes": [
+        "bga-silage",
+        "bga-straw"
+      ],
+      "devideRecipies": true
+    },
+    "fert":{
+      "name": "Düngerfabrik",
+      "factor": 1.0,
+      "recipes": [
+        "fertilizer"
       ],
       "devideRecipies": true
     }

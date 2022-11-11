@@ -4,7 +4,7 @@ use serde_derive::{Deserialize, Serialize};
 
 use super::{recipe::ProductionStep, ressource::RessourceUsed};
 
-#[derive(Deserialize, Serialize, Debug, Clone)]
+#[derive(Deserialize, Serialize, Debug, Clone,Default)]
 pub struct Target {
     #[serde(default)]
     pub inputs: Vec<RessourceUsed>,
