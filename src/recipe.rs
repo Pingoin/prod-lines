@@ -24,7 +24,7 @@ impl Recipe {
             inputs: self.inputs.clone(),
             outputs: self.outputs.clone(),
             production_capacity: 0.0,
-            duration:self.duration,
+            duration:self.duration/self.cycles,
             recipe: id.clone(),
         }
     }

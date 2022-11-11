@@ -41,19 +41,19 @@ HashMap<String,Production>
     (data.ressources,data.recipes,data.target,data.productions)
 }
 
-pub fn get_wighted_recipes(productions: &HashMap<String, Production>,recepies: &HashMap<String, Recipe>)->HashMap<String, ProductionStep>{
+pub fn get_wighted_recipes(productions: &HashMap<String, Production>,recipes: &HashMap<String, Recipe>)->HashMap<String, ProductionStep>{
     let mut wighted_recipes: HashMap<String, ProductionStep> = HashMap::new();
     for (_, production) in productions.iter() {
-        for recipie_id in production.recipes.iter() {
-            let mut recipie = match wighted_recipes.get_mut(recipie_id) {
-                Some(recipie) => recipie.clone(),
-                None => match recepies.get(recipie_id) {
-                    Some(rec) => rec.to_production_step(recipie_id),
+        for recipe_id in production.recipes.iter() {
+            let mut recipe = match wighted_recipes.get_mut(recipe_id) {
+                Some(recipe) => recipe.clone(),
+                None => match recipes.get(recipe_id) {
+                    Some(rec) => rec.to_production_step(recipe_id),
                     None => ProductionStep::new(),
                 },
             };
-            recipie.production_capacity += production.factor / recipie.duration;
-            wighted_recipes.insert(recipie_id.clone(), recipie);
+            recipe.production_capacity += (production.factor) / recipe.duration;
+            wighted_recipes.insert(recipe_id.clone(), recipe);
             
         }
     }

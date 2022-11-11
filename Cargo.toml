@@ -9,3 +9,12 @@ edition = "2021"
 serde = "1.0.117"
 serde_derive = "1.0.117"
 serde_json = "1.0.59"
+"eframe"="0.19.0"
+
+[[bin]]
+name = "cli"
+path = "src/cli/main.rs"
+
+[[bin]]
+name = "gui"
+path = "src/gui/main.rs"
